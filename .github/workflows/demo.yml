@@ -1,0 +1,20 @@
+name: Flask_Application
+
+on:
+  push:
+    branches: 
+      - feature/flask_application
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+     
+    steps:
+      - name: Install dependencies
+        run: |
+          python3 -m venv env;source env/bin/activate
+
+          
+
+    
+
+      
