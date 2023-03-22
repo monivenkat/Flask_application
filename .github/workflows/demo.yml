@@ -10,7 +10,11 @@ jobs:
      
     steps:
       - name: Build the docker image
-        run: docker --version
+        run: |
+          docker --version
+          ls
+          pwd
+        
           
 
     
