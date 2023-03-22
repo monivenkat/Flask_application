@@ -10,7 +10,7 @@ jobs:
      
     steps:
       - name: Build the docker image
-        run: docker build -t flask_application 
+        run: ls && docker build -t flask_application .
 
           
 
