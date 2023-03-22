@@ -10,7 +10,7 @@ jobs:
      
     steps:
       - name: Build the docker image
-        run: ls 
+        run: sh "ls"
           
 
     
