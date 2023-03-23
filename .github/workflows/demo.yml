@@ -12,11 +12,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         
-      - name: Build the docker image
-        run: docker build -t flask_application .
+      - name: create an directory
+        run: mkdir test
         
-      - name: Save the docker image
-        run: docker save flask_application > flask_application.tar.gz
+      - name: Build the docker image
+        run: |
+          cd test 
+          docker build -t flask_application .
+          docker save flask_application > flask_application.tar.gz
+          cd ..
         
       - name: test
         run: echo "test"
@@ -32,6 +36,6 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: flask_application.tar.gz
-          path: flask_application/
+          path: test
           
       
