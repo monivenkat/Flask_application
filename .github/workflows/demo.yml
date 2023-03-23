@@ -24,3 +24,9 @@ jobs:
       - uses: jfrog/setup-jfrog-cli@v3
         with:
           version: latest
+        env:
+          JFROG_URL: ${{ secrets.JFROG_URL }}
+          JFROG_USERNAME: ${{ secrets.JFROG_USERNAME }}
+          JFROG_PASSWORD: ${{ secrets.JFROG_PASSWORD }}
+          
+      - run: jf rt ping
