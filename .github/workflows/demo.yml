@@ -21,6 +21,7 @@ jobs:
       - name: test
         run: echo "test"
         
-      - name: jfrog/setup-jfrog-cli@v3
-        run: jfrog --version
+      - uses: jfrog/setup-jfrog-cli@v3
+        with:
+          version: latest
       
