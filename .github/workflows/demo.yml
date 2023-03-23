@@ -32,9 +32,6 @@ jobs:
           JFROG_USERNAME: ${{ secrets.JFROG_USERNAME }}
           JFROG_PASSWORD: ${{ secrets.JFROG_PASSWORD }}
           
-      - uses: actions/upload-artifact@v3
-        with:
-          name: flask_application.tar.gz
-          path: test
+      - run: jf rt ping 
           
       
