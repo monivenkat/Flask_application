@@ -16,8 +16,7 @@ jobs:
         run: mkdir test
         
       - name: Build the docker image
-        run: |
-          cd test 
+        run:  
           docker build -t flask_application .
           docker save flask_application > flask_application.tar.gz
           cd ..
