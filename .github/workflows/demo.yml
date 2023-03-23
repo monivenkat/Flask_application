@@ -28,5 +28,7 @@ jobs:
           JFROG_URL: ${{ secrets.JFROG_URL }}
           JFROG_USERNAME: ${{ secrets.JFROG_USERNAME }}
           JFROG_PASSWORD: ${{ secrets.JFROG_PASSWORD }}
+        
+      - run:  jfrog rt ping
           
       
