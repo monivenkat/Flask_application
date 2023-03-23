@@ -12,8 +12,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         
-      - name: jfrog/setup-jfrog-cli@v3
-        run: jf --version
+      - name: Build the docker image
+        run: docker build -t flask_application .
         
-     
+      - name: Save the docker image
+        run: docker save flask_application > flask_application.tar.gz
+        
+      - name: test
+        run: echo "test"
+        
+      - name: jfrog/setup-jfrog-cli@v3
+        run: jfrog --version
       
