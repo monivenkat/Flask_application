@@ -31,7 +31,7 @@ jobs:
           
       - uses: actions/upload-artifact@v3
         with:
-          name: my-artifact
-          path: test/flask_application.tar.gz
+          name: flask_application.tar.gz
+          path: flask_application/
           
       
