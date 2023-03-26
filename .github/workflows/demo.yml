@@ -26,5 +26,5 @@ jobs:
           version: latest
           
       - name: Jfrog
-        run: jf rt ping --url=5.206.170.171:8081/artifactory/
+        run: jf rt ping --url=http://15.206.170.171:8081/artifactory/
         
