@@ -24,12 +24,9 @@ jobs:
      - uses: jfrog/setup-jfrog-cli@v3
        with:
           version: latest
-          URL: ${{ secrets.JFROG_URL }}
-          USERNAME: ${{ secrets.JFROG_USERNAME }}
-          PASSWORD: ${{ secrets.JFROG_PASSWORD }}
-          
+    
      - name: Jfrog
        run: |
-        jf rt ping 
+        jf rt ping --url=http://15.206.170.171:8081/artifactory/ --user=admin --password=admin@123
         jf rt u flask_application.tar.gz test
         
