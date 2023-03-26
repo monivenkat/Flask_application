@@ -9,22 +9,24 @@ jobs:
     runs-on: ubuntu-latest
      
     steps:
-     # - name: Checkout repository
-      #  uses: actions/checkout@v2
+     - name: Checkout repository
+       uses: actions/checkout@v2
         
-      #- name: Build the docker image
-       # run: docker build -t flask_application .
+     - name: Build the docker image
+       run: docker build -t flask_application .
         
-     # - name: Save the docker image
-      #  run: docker save flask_application > flask_application.tar.gz
+     - name: Save the docker image
+       run: docker save flask_application > flask_application.tar.gz
         
-      - name: test
-        run: echo "tests"
+     - name: test
+       run: echo "tests"
         
-      - uses: jfrog/setup-jfrog-cli@v3
-        with:
+     - uses: jfrog/setup-jfrog-cli@v3
+       with:
           version: latest
           
-      - name: Jfrog
-        run: jf rt ping --url=http://15.206.170.171:8081/artifactory/
+     - name: Jfrog
+       run: |
+        jf rt ping --url=http://15.206.170.171:8081/artifactory/
+        jf rt u flask_application.tar.gz test
         
