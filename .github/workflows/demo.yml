@@ -13,7 +13,9 @@ jobs:
        uses: actions/checkout@v2
         
      - name: Build the docker image
-       run: docker build -t flask_application .
+       run: |
+        pwd
+        docker build -t flask_application . 
         
      - name: Save the docker image
        run: docker save flask_application > flask_application.tar.gz
@@ -24,9 +26,15 @@ jobs:
      - uses: jfrog/setup-jfrog-cli@v3
        with:
           version: latest
+          URL: ${{ secrets.JFROG_URL}}
+          USERNAME: ${{ secrets.JFROG_USERNAME }}
+          PASSWORD: ${{ secrets.JFROG_PASSWORD }}
+          
     
-     - name: Jfrog
-       run: |
-        jf rt ping --url=http://15.206.170.171:8081/artifactory/ --user=admin --password=admin@123
-        jf rt u flask_application.tar.gz test
+     - name: Upload a Build Artifact
+       uses: actions/upload-artifact@v3.1.2
+       with:
+        name: tar file
+        path: flask_application
+        
         
