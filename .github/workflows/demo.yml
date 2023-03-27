@@ -50,7 +50,5 @@ jobs:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
           SERVER_SSHKEY: ${{ secrets.SERVER_SSHKEY }}
-       run: |
-        pwd
-        ls
+       run: docker load -i flask_application.tar.gz
         
