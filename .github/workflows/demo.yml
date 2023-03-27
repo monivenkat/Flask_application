@@ -6,6 +6,7 @@ on:
       - feature/flask_application
 jobs:
   Job1:
+    name: Build
     runs-on: ubuntu-latest
      
     steps:
@@ -32,9 +33,15 @@ jobs:
        with:
         name: artifacts
         path: /home/runner/work/Flask_application/Flask_application/push_to_artifactory
-        
+    
+  Job2:   
+    name: Deploy
+    needs: Job1
+    runs-on: ubuntu-latest
+    
+    steps:
      - name: Download a Build Artifact
        uses: actions/download-artifact@v2.1.1
        with:
-         name: artifacts
+        name: artifacts
         
