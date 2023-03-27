@@ -45,7 +45,7 @@ jobs:
        with:
         name: artifacts
         
-     - name: Deplopy
+     - name: Deploy
        env:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
