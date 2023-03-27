@@ -13,27 +13,9 @@ jobs:
      - name: Checkout repository
        uses: actions/checkout@v2
         
-     - name: Build the docker image
-       run: |
-        mkdir push_to_artifactory
-        docker build -t flask_application . 
-        
-     - name: Save the docker image
-       run: docker save flask_application > push_to_artifactory/flask_application.tar.gz
-        
      - name: test
        run: echo "tests"
         
-     - uses: jfrog/setup-jfrog-cli@v3
-       with:
-          version: latest      
-    
-     - name: Upload a Build Artifact
-       uses: actions/upload-artifact@v3.1.2
-       with:
-        name: artifacts
-        path: /home/runner/work/Flask_application/Flask_application/push_to_artifactory
-    
   Job2:   
     name: Deploy
     needs: Job1
@@ -44,4 +26,11 @@ jobs:
        uses: actions/download-artifact@v2.1.1
        with:
         name: artifacts
+        
+     - name: Deplopy
+       env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+          SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
+          SERVER_SSHKEY: ${{ secrets.SERVER_SSHKEY }}
+       run: pwd
         
