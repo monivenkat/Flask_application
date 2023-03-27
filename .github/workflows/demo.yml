@@ -5,7 +5,7 @@ on:
     branches: 
       - feature/flask_application
 jobs:
-  Build:
+  Job1:
     runs-on: ubuntu-latest
      
     steps:
@@ -14,7 +14,6 @@ jobs:
         
      - name: Build the docker image
        run: |
-        pwd
         mkdir push_to_artifactory
         docker build -t flask_application . 
         
@@ -26,16 +25,24 @@ jobs:
         
      - uses: jfrog/setup-jfrog-cli@v3
        with:
-          version: latest
-          URL: ${{ secrets.JFROG_URL}}
-          USERNAME: ${{ secrets.JFROG_USERNAME }}
-          PASSWORD: ${{ secrets.JFROG_PASSWORD }}
-          
+          version: latest      
     
      - name: Upload a Build Artifact
        uses: actions/upload-artifact@v3.1.2
        with:
-        name: tar file
-        path: /home/runner/work/Flask_application/Flask_application/push_to_artifactory
+        name: artifacts
+        path: Flask_application/push_to_artifactory
+        
+  Job2:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Download an artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: artifacts
         
         
