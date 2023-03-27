@@ -31,7 +31,7 @@ jobs:
        uses: actions/upload-artifact@v3.1.2
        with:
         name: artifacts
-        path: Flask_application/push_to_artifactory
+        path: /home/runner/work/Flask_application/Flask_application/push_to_artifactory
         
         
         
