@@ -52,5 +52,5 @@ jobs:
           SERVER_SSHKEY: ${{ secrets.SERVER_SSHKEY }}
        run: |
         pwd
-        tar -xzf flask_application.tar.gz
+        ls
         
