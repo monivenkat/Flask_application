@@ -1,38 +1,53 @@
-name: CodeQL
+name: Flask_Application
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  schedule:
-    - cron: "31 14 * * 1"
-
+    branches: 
+      - feature/flask_application
 jobs:
-  analyze:
-    name: Analyze
+  Job1:
+    name: Build
     runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-
-    strategy:
-      fail-fast: false
-      matrix:
-        language: ["python"]
-
+     
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v1
-        with:
-          languages: ${{ matrix.language }}
-
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v1
-
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v1
+     - name: Checkout repository
+       uses: actions/checkout@v2
+        
+     - name: Build the docker image
+       run: |
+        mkdir push_to_artifactory
+        docker build -t flask_application . 
+        
+     - name: Save the docker image
+       run: docker save flask_application > push_to_artifactory/flask_application.tar.gz
+        
+     - name: test
+       run: echo "test"
+        
+     - uses: jfrog/setup-jfrog-cli@v3
+       with:
+          version: latest      
+    
+     - name: Upload a Build Artifact
+       uses: actions/upload-artifact@v3.1.2
+       with:
+        name: artifact
+        path: /home/runner/work/Flask_application/Flask_application/push_to_artifactory
+    
+  Job2:   
+    name: Deploy
+    needs: Job1
+    runs-on: ubuntu-latest
+    
+    steps:
+     - name: Download a Build Artifact
+       uses: actions/download-artifact@v2.1.1
+       with:
+        name: artifact
+        
+     - name: Deploy
+       env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+          SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
+          SERVER_SSHKEY: ${{ secrets.SERVER_SSHKEY }}
+       run: docker load -i flask_application.tar.gz
