@@ -33,8 +33,8 @@ jobs:
        with:
         name: artifact
         path: |
-          /home/runner/work/Flask_application/Flask_application/push_to_artifactory/
-          /home/runner/work/Flask_application/Flask_application/Deploy
+          /home/runner/work/Flask_application/Flask_application/push_to_artifactory/flask_application.tar.gz
+          /home/runner/work/Flask_application/Flask_application/Deploy/docker-compose.yml
           
     
   Job2:   
@@ -55,4 +55,3 @@ jobs:
           SERVER_SSHKEY: ${{ secrets.SERVER_SSHKEY }}
        run: |
         ls
-        docker load -i flask_application.tar.gz
