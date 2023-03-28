@@ -1,5 +1,1 @@
-*.pyo
-*.pyc
-*cfg
-**/env/
-**/__pycache__/
+.DS_Store
