@@ -32,7 +32,10 @@ jobs:
        uses: actions/upload-artifact@v3.1.2
        with:
         name: artifact
-        path: /home/runner/work/Flask_application/Flask_application/push_to_artifactory
+        path: |
+          /home/runner/work/Flask_application/Flask_application/push_to_artifactory
+          /home/runner/work/Flask_application/Flask_application/Deploy
+          
     
   Job2:   
     name: Deploy
@@ -50,4 +53,6 @@ jobs:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
           SERVER_SSHKEY: ${{ secrets.SERVER_SSHKEY }}
-       run: docker load -i flask_application.tar.gz
+       run: |
+        ls
+        docker load -i flask_application.tar.gz
