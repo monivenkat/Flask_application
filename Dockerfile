@@ -1,6 +1,4 @@
-FROM python:3.10
-WORKDIR /opt/app
-COPY . /opt/app
+FROM python:3.9.1
+ADD . /python-flask
+WORKDIR /python-flask
 RUN pip install -r requirements.txt
-EXPOSE 3000
-CMD ["python3", "app.py"]
