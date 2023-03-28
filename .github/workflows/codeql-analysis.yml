@@ -55,3 +55,5 @@ jobs:
           SERVER_SSHKEY: ${{ secrets.SERVER_SSHKEY }}
        run: |
         ls
+        cp Deploy/* push_to_artifactory
+        cd push_to_artifactory && docker load -i flask_application.tar.gz
