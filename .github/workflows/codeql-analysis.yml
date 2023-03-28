@@ -33,7 +33,7 @@ jobs:
        with:
         name: artifact
         path: |
-          /home/runner/work/Flask_application/Flask_application/push_to_artifactory
+          /home/runner/work/Flask_application/Flask_application/push_to_artifactory/
           /home/runner/work/Flask_application/Flask_application/Deploy
           
     
