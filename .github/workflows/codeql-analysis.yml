@@ -56,4 +56,4 @@ jobs:
        run: |
         ls
         cp Deploy/* push_to_artifactory
-        cd push_to_artifactory && docker load -i flask_application.tar.gz
+        cd push_to_artifactory && docker load -i flask_application.tar.gz && docker-compose up -d
