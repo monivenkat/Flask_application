@@ -22,7 +22,7 @@ jobs:
        run: docker save flask_application > push_to_artifactory/flask_application.tar.gz
         
      - name: test
-       run: echo "tests"
+       run: echo "test"
         
      - uses: jfrog/setup-jfrog-cli@v3
        with:
