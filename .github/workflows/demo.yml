@@ -31,7 +31,7 @@ jobs:
      - name: Upload a Build Artifact
        uses: actions/upload-artifact@v3.1.2
        with:
-        name: artifacts
+        name: artifact
         path: /home/runner/work/Flask_application/Flask_application/push_to_artifactory
     
   Job2:   
@@ -43,7 +43,7 @@ jobs:
      - name: Download a Build Artifact
        uses: actions/download-artifact@v2.1.1
        with:
-        name: artifacts
+        name: artifact
         
      - name: Deploy
        env:
