@@ -3,7 +3,7 @@ name: Flask_Application
 on:
   push:
     branches: 
-      - feature/flask_application
+      - main
 jobs:
   Job1:
     name: Build
